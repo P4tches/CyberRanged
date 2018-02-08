@@ -3,15 +3,15 @@ from datetime import datetime, date
 conn = sqlite3.connect('env.db')
 c = conn.cursor()
 
-def main():
-	print("Hello DB!")
-	createEnv("env9")
-	addEnvVM("env9","Kali_07","env_07")
+#def main():
+#	print("Hello DB!")
+#	createEnv("env9")
+#	addEnvVM("env9","Kali_07","env_07")
 	#delEnvVM("env9","Kali_02")
 	#deleteEnv("env4")
-	listEnv("env9")
-	listAllEnv()
-	conn.close()
+#	listEnv("env9")
+#	listAllEnv()
+#	conn.close()
 
 def createEnv(env_name):
 	try:
@@ -50,13 +50,15 @@ def listEnv(env_name):
 
 def listAllEnv():
 	try:
+		#c.execute(".tables")
 		c.execute("SELECT name FROM sqlite_master WHERE type='table';")
 		print(c.fetchall())
 	except:
 		print("ERROR: Could not list environments")
 
 
-if __name__ == "__main__":
-	conn = sqlite3.connect('env.db')
-	c = conn.cursor()
-	main()
+#if __name__ == "__main__":
+#	conn = sqlite3.connect('env.db')
+#	c = conn.cursor()
+#	print(listAllEnv())
+#	main()
