@@ -4,5 +4,6 @@ __pycache__/
 *.iso
 *.vdi
 *.vmdk
+*.db
 
 images/\.kali-linux-mate-2017\.2-amd64\.iso\.swp
