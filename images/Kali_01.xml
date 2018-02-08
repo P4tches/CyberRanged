@@ -34,7 +34,7 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
-      <source file='images/kali-linux-mate-2017.2-amd64.iso'/>
+      <source file='kali-linux-mate-2017.2-amd64.iso'/>
       <backingStore/>
       <target dev='hda' bus='ide'/>
       <readonly/>
