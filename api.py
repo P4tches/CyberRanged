@@ -46,7 +46,7 @@ def stopVM(vm_name):
 		print("Error stopping "+vm_name)
 
 def createVM(vm_name):
-	f = open("./images/jumpbox/"+vm_name+".xml")
+	f = open("./images/"+vm_name+".xml")
 	conn.defineXML(f.read())
 	conn.lookupByName(vm_name).create()
 
