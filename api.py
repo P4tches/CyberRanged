@@ -7,7 +7,10 @@ import os,sys,time,libvirt
 	#listImages()
 
 ## Connect to server
-conn = libvirt.open('qemu:///system')
+try:
+	conn = libvirt.open('qemu:///system')
+except:
+	print("Could not connect to QEMU")
 
 ## VMs
 
@@ -46,7 +49,7 @@ def stopVM(vm_name):
 		print("Error stopping "+vm_name)
 
 def createVM(vm_name):
-	f = open("./images/"+vm_name+".xml")
+	f = open(os.path.dirname(os.path.realpath(__file__))+"/images/"+vm_name+".xml")
 	conn.defineXML(f.read())
 	conn.lookupByName(vm_name).create()
 
@@ -58,7 +61,7 @@ def listNets():
 ## Images
 
 def listImages():
-	for file in os.listdir("./images/jumpbox/"):
+	for file in os.listdir("./images/"):
                         if file.endswith(".xml"):
                                 print(file)
 
