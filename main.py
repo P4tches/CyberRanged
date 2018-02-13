@@ -1,7 +1,9 @@
 import os,sys,time,libvirt
 from api import *
+from log import *
 
 def main():
+	logStatus("main.py started")
 	clearScreen()
 	print("Welcome to CyberRange Alpha")
 	print()

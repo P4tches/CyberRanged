@@ -1,5 +1,5 @@
 import os,sys,time,libvirt
-
+from log import *
 
 #def main():
 	#listVMs()
@@ -9,8 +9,9 @@ import os,sys,time,libvirt
 ## Connect to server
 try:
 	conn = libvirt.open('qemu:///system')
+	logStatus("Connected to QEMU")
 except:
-	print("Could not connect to QEMU")
+	logError("Could not connect to QEMU")
 
 ## VMs
 
@@ -21,32 +22,36 @@ def listVMs():
 def startAllVMs():
 	for domain in conn.listAllDomains():
 			vm = str(domain.name())
-			print("Starting "+vm)
-			try:
-				domain.create()
-			except:
-				print("Error starting "+vm)
+			startVM(vm)
+			#logStatus("Starting "+vm)
+			#try:
+			#	domain.create()
+			#except:
+			#	logError("Error starting "+vm)
 
 def stopAllVMs():
 	for domain in conn.listAllDomains():
 			vm = str(domain.name())
-			print("Stopping "+vm)
-			try:
-				domain.destroy()
-			except:
-				print("Error stopping "+vm)
+			stopVM(vm)
+			#logStatus("Stopping "+vm)
+			#try:
+			#	domain.destroy()
+			#except:
+			#	logError("Error stopping "+vm)
 
 def startVM(vm_name):
 	try:
 		conn.lookupByName(vm_name).create()
+		logStatus("Starting "+vm_name)
 	except:
-		print("Error starting "+vm_name)
+		logError("Error starting "+vm_name)
 
 def stopVM(vm_name):
 	try:
 		conn.lookupByName(vm_name).destroy()
+		logStatus("Stopping "+vm_name)
 	except:
-		print("Error stopping "+vm_name)
+		logError("Error stopping "+vm_name)
 
 def createVM(vm_name):
 	f = open(os.path.dirname(os.path.realpath(__file__))+"/images/"+vm_name+".xml")
