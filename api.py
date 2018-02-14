@@ -12,7 +12,13 @@ except:
 
 def listVMs():
 	for i in conn.listAllDomains():
-                        print(i.name())
+            print(i.name())
+
+def returnVMs():
+	domainList = []
+	for i in conn.listAllDomains():
+		domainList.append(i.name())
+	return domainList
 
 def startAllVMs():
 	for domain in conn.listAllDomains():
@@ -47,6 +53,11 @@ def listNets():
 	for nets in conn.listAllNetworks():
 		print(nets.name())
 
+def returnNets():
+	netList = []
+	for nets in conn.listAllNetworks():
+		netList.append(str(nets.name()))
+	return netList
 
 ## Images
 
