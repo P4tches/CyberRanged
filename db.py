@@ -56,7 +56,18 @@ def listAllEnv():
 	except:
 		print("ERROR: Could not list environments")
 
+def listNets(env_name):
+	try:
+		c.execute("SELECT network_name FROM %s" % env_name)
+		return c.fetchall()
+	except:
+		print("ERROR: Could not list networks")
 
+def selectLine(table,line):
+	## 0 == first line of output
+	print("test")
+	c.execute(str("SELECT * FROM {} LIMIT 1 OFFSET {}").format(table,line))
+	print(c.fetchall())
 #if __name__ == "__main__":
 #	conn = sqlite3.connect('env.db')
 #	c = conn.cursor()
