@@ -1,11 +1,6 @@
 import os,sys,time,libvirt
 from log import *
 
-#def main():
-	#listVMs()
-	#stopVM("Kali_01")
-	#listImages()
-
 ## Connect to server
 try:
 	conn = libvirt.open('qemu:///system')
@@ -23,21 +18,11 @@ def startAllVMs():
 	for domain in conn.listAllDomains():
 			vm = str(domain.name())
 			startVM(vm)
-			#logStatus("Starting "+vm)
-			#try:
-			#	domain.create()
-			#except:
-			#	logError("Error starting "+vm)
 
 def stopAllVMs():
 	for domain in conn.listAllDomains():
 			vm = str(domain.name())
 			stopVM(vm)
-			#logStatus("Stopping "+vm)
-			#try:
-			#	domain.destroy()
-			#except:
-			#	logError("Error stopping "+vm)
 
 def startVM(vm_name):
 	try:
@@ -73,4 +58,4 @@ def listImages():
 
 if __name__ == "__main__":
         conn = libvirt.open('qemu:///system')
-#        main()
+
