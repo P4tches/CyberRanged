@@ -21,6 +21,7 @@ def main():
 	print("Select environment:")
 	env_name = input("(%s)> " % vm_name)
 	mediaType()
+	network()
 	printAll()
 
 def mediaType():
@@ -38,14 +39,22 @@ def mediaType():
 		mediaType()
 
 def network():
+	global net_name
 	## print networks in environment
 	print("Which network?") # list by numbers instead of string input
+	count = 1
+	nets = listNets(env_name)
+	for i in nets:
+		print(i)
+	#print(listNets("env7"))
 	option = input("(%s)> " % vm_name)
+	net_name = option
 
 def printAll():
-	print("VM: "+vm_name)
-	print("Env: "+env_name)
-	print("Storage: "+storageMedia)
+	print("VM: "+str(vm_name))
+	print("Env: "+str(env_name))
+	print("Storage: "+str(storageMedia))
+	print("Net: "+str(net_name))
 
 def clearScreen():
 	os.system("clear")
